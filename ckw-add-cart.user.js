@@ -1,10 +1,10 @@
 // ==UserScript==
-// @name         Chiikawa Market Storage Checker
-// @namespace    https://github.com/zhxie/chiikawa-market-storage-checker
-// @version      2024-11-16+1
-// @author       Xie Zhihao
-// @description  Check storage of products in Chiikawa market.
-// @homepage     https://github.com/zhxie/chiikawa-market-storage-checker
+// @name         Ckw test
+// @namespace    https://github.com/melodySung/ckw-test.git
+// @version      2024-11-29+1
+// @author       Melody
+// @description  ckw cart test.
+// @homepage     https://github.com/melodySung/ckw-test
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=chiikawamarket.jp
 // @match        https://chiikawamarket.jp/products/*
 // @match        https://chiikawamarket.jp/collections/*/products/*
@@ -20,19 +20,9 @@
 // @grant        none
 // ==/UserScript==
 
-const INTERVAL = 500;
-const MAX_QUANTITY = 20000;
-const THRESHOLD_QUANTITY = 100;
-const THRESHOLD_PRECISION = 100;
-
 (async function () {
   "use strict";
-
-  const sleep = async (ms) => {
-    return new Promise((resolve) => {
-      setTimeout(resolve, ms);
-    });
-  };
+  
   const getCart = async () => {
     const res = await fetch("/cart.js", {
       headers: {
@@ -42,6 +32,7 @@ const THRESHOLD_PRECISION = 100;
     const data = await res.json();
     return data?.items;
   };
+  
   const addItem = async (id, productId, quantity) => {
     const res = await fetch("/cart/add.js", {
       headers: {
@@ -54,6 +45,7 @@ const THRESHOLD_PRECISION = 100;
     });
     return res.status;
   };
+  
   const removeItem = async (id) => {
     const items = await getCart();
     const index = items?.findIndex((e) => e?.id == id);
