@@ -2,7 +2,7 @@
 
 ### Tampermonkey (Chrome Desktop)
 
-https://cdn.jsdelivr.net/gh/melodySung/ckw-test/ckw-add-cart.user
+https://cdn.jsdelivr.net/gh/melodySung/ckw-test/ckw-add-cart.user.js
 
 
 ## License
