@@ -7,14 +7,12 @@
 // @homepage     https://github.com/melodySung/ckw-test
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=chiikawamarket.jp
 // @match        https://chiikawamarket.jp/products/*
+// @match        https://chiikawamarket.jp/collections/*
 // @match        https://chiikawamarket.jp/collections/*/products/*
-// @match        https://chiikawamarket.jp/cart
 // @match        https://nagano-market.jp/products/*
 // @match        https://nagano-market.jp/*/products/*
 // @match        https://nagano-market.jp/collections/*/products/*
 // @match        https://nagano-market.jp/*/collections/*/products/*
-// @match        https://nagano-market.jp/cart
-// @match        https://nagano-market.jp/*/cart
 // @match        https://chiikawamogumogu.shop/products/*
 // @match        https://chiikawamogumogu.shop/collections/*/products/*
 // @grant        none
@@ -75,6 +73,8 @@
 
     const text = label.textContent;
 
+    label.textContent = `${text} (🔄)`;
+
     // Get product ID and ID for storage checking.
     const productId = document.querySelector('input[name="product-id"]')?.getAttribute("value");
     let id = document.getElementsByClassName("product-form--variant-select")?.[0]?.children?.[0]?.getAttribute("value");
@@ -100,44 +100,10 @@
         }
     } catch (error) {
         label.textContent = `${text} ${error.message}`;
-        console.log("eeeeeeeee")
+        console.log("add Cart Error: ${error.message}")
     }
 
   }
-  const checkProduct = async () => {
-    // Make sure the label is valid.
-    let label = document.getElementsByClassName("product-page--title")?.[0];
-    if (!label) {
-      label = document.getElementsByClassName("product__title")?.[0].children?.[0];
-    }
-    if (!label) {
-      return;
-    }
-    const text = label.textContent;
-
-    // Get product ID and ID for storage checking.
-    const productId = document.querySelector('input[name="product-id"]')?.getAttribute("value");
-    let id = document.getElementsByClassName("product-form--variant-select")?.[0]?.children?.[0]?.getAttribute("value");
-    if (!id) {
-      // Chiikawa Mogumogu Honpo Online Store.
-      id = document.getElementsByClassName("product__pickup-availabilities")?.[0]?.getAttribute("data-variant-id");
-    }
-    if (!productId || !id) {
-      return;
-    }
-
-    // Get current quantity.
-    let currentQuantity = 0;
-    try {
-      currentQuantity = await removeItem(id);
-    } catch {}
-
-    // Check storage.
-    label.textContent = `${text} (🔄)`;
-    await check(id, productId, currentQuantity, (t) => {
-      label.textContent = `${text} (${t})`;
-    });
-  };
 
   const links = [];
   const createLink = () => {
@@ -157,6 +123,17 @@
     links.push(link);
     return link;
   };
+
+    //collections
+    const productLinks = document.querySelectorAll('.product--root a');
+
+    console.log("find links:")
+    console.log(productLinks);
+
+    productLinks.forEach(link => {
+        link.setAttribute('target', '_blank');
+    });
+
 
     // Product.
     let title = document.getElementsByClassName("product-page--title")?.[0];
