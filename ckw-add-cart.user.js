@@ -11,6 +11,7 @@
 // @match        https://chiikawamarket.jp/collections/*/products/*
 // @match        https://nagano-market.jp/products/*
 // @match        https://nagano-market.jp/*/products/*
+// @match        https://nagano-market.jp/collections/*
 // @match        https://nagano-market.jp/collections/*/products/*
 // @match        https://nagano-market.jp/*/collections/*/products/*
 // @match        https://chiikawamogumogu.shop/products/*
