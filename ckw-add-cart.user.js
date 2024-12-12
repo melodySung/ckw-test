@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Ckw test
 // @namespace    https://github.com/melodySung/ckw-test.git
-// @version      2024-12-02+1
+// @version      2024-12-11+1
 // @author       Melody
 // @description  ckw cart test.
 // @homepage     https://github.com/melodySung/ckw-test
@@ -11,6 +11,7 @@
 // @match        https://chiikawamarket.jp/collections/*/products/*
 // @match        https://nagano-market.jp/products/*
 // @match        https://nagano-market.jp/*/products/*
+// @match        https://nagano-market.jp/collections/*
 // @match        https://nagano-market.jp/collections/*/products/*
 // @match        https://nagano-market.jp/*/collections/*/products/*
 // @match        https://chiikawamogumogu.shop/products/*
