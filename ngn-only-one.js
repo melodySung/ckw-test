@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Ckw test
+// @name         专抢圣诞熊
 // @namespace    https://github.com/melodySung/ckw-test.git
 // @version      2024-12-02+1
 // @author       Melody
@@ -7,14 +7,7 @@
 // @homepage     https://github.com/melodySung/ckw-test
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=chiikawamarket.jp
 // @match        https://chiikawamarket.jp/products/*
-// @match        https://chiikawamarket.jp/collections/*
-// @match        https://chiikawamarket.jp/collections/*/products/*
-// @match        https://nagano-market.jp/products/*
-// @match        https://nagano-market.jp/*/products/*
-// @match        https://nagano-market.jp/collections/*/products/*
-// @match        https://nagano-market.jp/*/collections/*/products/*
-// @match        https://chiikawamogumogu.shop/products/*
-// @match        https://chiikawamogumogu.shop/collections/*/products/*
+// @match        https://nagano-market.jp/*/products/4571609353096
 // @grant        none
 // ==/UserScript==
 
@@ -89,14 +82,18 @@
     try {
         // Attempt to add items with the given quantity to cart.
         let res = await addItem(id, productId, 1);
-        console.log("addItem res")
+        console.log('addItem ID:', id); // 打印 id
+
         console.log(res)
 
         label.textContent = `${text} ${res}`;
         if(res == 200 ) {
             label.textContent = `${text} (✅)`;
+            window.location.href = 'https://nagano-market.jp/checkout';
         } else {
             label.textContent = `${text} (❌)`;
+             // 失败时刷新当前页面
+            location.reload();
         }
     } catch (error) {
         label.textContent = `${text} ${error.message}`;
@@ -109,7 +106,7 @@
   const createLink = () => {
     const link = document.createElement("a");
     link.href = "#";
-    link.textContent = "加购物车";
+    link.textContent = "👌😊";
     // TODO: this color does not apply to Chiikawa Mogumogu Honpo Online Store.
     link.style.color = "var(--bg-color--button)";
     link.style.marginLeft = "8px";
@@ -148,6 +145,6 @@
       addToCart();
     });
     title.appendChild(link);
-  
+
 })();
 
